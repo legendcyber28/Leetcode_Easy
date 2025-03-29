@@ -1,21 +1,22 @@
 class Solution {
 public:
     string destCity(vector<vector<string>>& paths) {
-        unordered_map<string, int> mp;
+         // 2nd approach using the hashset
+        unordered_set<string> st;
         for(auto &path : paths)
         {
             string source = path[0];
 
-            mp[source] = 1;
+            st.insert(source); //outgoing age
         }
         for(auto &path : paths)
         {
             string dest = path[1];
 
-            if(mp[dest]!=1)
-            {
-                return dest;
-            }
+           if(st.find(dest)==st.end())
+           {
+            return dest;
+           }
         }
         return "";
     }
